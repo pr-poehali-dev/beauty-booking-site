@@ -6,81 +6,96 @@ const ServicesPreview = () => {
     {
       icon: "Sparkles",
       title: "Чистка лица",
-      description: "Глубокое очищение, удаление комедонов, увлажнение",
+      description: "Глубокое очищение и восстановление кожи",
       price: "от 3 500 ₽",
-      duration: "60 мин",
+      image:
+        "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=400&h=300&fit=crop",
     },
     {
       icon: "Zap",
-      title: "Инъекции красоты",
-      description: "Ботулинотерапия, мезотерапия, биоревитализация",
+      title: "Биоревитализация",
+      description: "Увлажнение и омоложение кожи",
       price: "от 8 000 ₽",
-      duration: "30-45 мин",
+      image:
+        "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&h=300&fit=crop",
+    },
+    {
+      icon: "Heart",
+      title: "Массаж лица",
+      description: "Расслабляющий и омолаживающий массаж",
+      price: "от 2 500 ₽",
+      image:
+        "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=400&h=300&fit=crop",
     },
     {
       icon: "Sun",
       title: "Пилинги",
-      description: "Химические пилинги различной интенсивности",
+      description: "Обновление и выравнивание кожи",
       price: "от 4 000 ₽",
-      duration: "45 мин",
-    },
-    {
-      icon: "Gem",
-      title: "Аппаратная косметология",
-      description: "RF-лифтинг, фотоомоложение, лазерная терапия",
-      price: "от 6 000 ₽",
-      duration: "60-90 мин",
+      image:
+        "https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=400&h=300&fit=crop",
     },
   ];
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20 bg-background">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-foreground mb-4">
+          <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
             Наши услуги
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Полный спектр косметологических процедур для здоровья и красоты
-            вашей кожи
+            Профессиональный уход за кожей с использованием современных
+            технологий
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
           {services.map((service, index) => (
-            <div key={index} className="beauty-card p-6 text-center">
-              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Icon
-                  name={service.icon as any}
-                  size={24}
-                  className="text-primary"
+            <div key={index} className="beauty-card p-6 group">
+              <div className="relative mb-4">
+                <img
+                  src={service.image}
+                  alt={service.title}
+                  className="w-full h-48 object-cover rounded-lg"
                 />
+                <div className="absolute top-4 left-4 w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+                  <Icon
+                    name={service.icon as any}
+                    size={20}
+                    className="text-white"
+                  />
+                </div>
               </div>
-              <h3 className="text-xl font-semibold mb-3">{service.title}</h3>
+
+              <h3 className="text-xl font-semibold text-foreground mb-2">
+                {service.title}
+              </h3>
               <p className="text-muted-foreground mb-4">
                 {service.description}
               </p>
-              <div className="space-y-2 mb-4">
-                <div className="text-accent font-semibold text-lg">
+              <div className="flex items-center justify-between">
+                <span className="text-lg font-bold text-primary">
                   {service.price}
-                </div>
-                <div className="text-sm text-muted-foreground">
-                  {service.duration}
-                </div>
+                </span>
+                <Link
+                  to="/booking"
+                  className="text-primary hover:text-primary/80 transition-colors"
+                >
+                  <Icon name="ArrowRight" size={20} />
+                </Link>
               </div>
-              <Link
-                to="/booking"
-                className="w-full inline-block beauty-button text-center"
-              >
-                Записаться
-              </Link>
             </div>
           ))}
         </div>
 
         <div className="text-center">
-          <Link to="/services" className="beauty-button-accent">
-            Все услуги и цены
+          <Link
+            to="/services"
+            className="beauty-button inline-flex items-center space-x-2"
+          >
+            <span>Все услуги</span>
+            <Icon name="ArrowRight" size={20} />
           </Link>
         </div>
       </div>
